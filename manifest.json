@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Ad Muter for Prime Video, Hotstar & Sony LIV",
+  "version": "0.2.0",
+  "description": "Mutes the tab while an ad is playing on Prime Video, JioHotstar or Sony LIV, and unmutes when the show comes back.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "*://*.primevideo.com/*",
+    "*://*.amazon.com/*",
+    "*://*.amazon.in/*",
+    "*://*.amazon.co.uk/*",
+    "*://*.hotstar.com/*",
+    "*://*.jiohotstar.com/*",
+    "*://*.sonyliv.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.primevideo.com/*",
+        "*://*.amazon.com/*",
+        "*://*.amazon.in/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.hotstar.com/*",
+        "*://*.jiohotstar.com/*",
+        "*://*.sonyliv.com/*"
+      ],
+      "js": ["sites.js", "hls-cues.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Ad Muter",
+    "default_popup": "popup.html"
+  }
+}
